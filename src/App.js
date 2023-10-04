@@ -19,7 +19,11 @@ export default function Form() {
   });
 
   console.log(formData.employment)
-
+  // handleChange is an event handler function that is called whenever an input field or checkbox is changed.
+  // It extracts the name, value, type, and checked properties from the event target (the input element).
+  // It uses the spread operator (...) to create a new state object by copying the previous state (prevFormData) and updating the specific field that matches the name.
+  // For checkboxes, it updates the field with the checked value, and for other input types, it uses the value property.
+  // Render the form with input fields and radio buttons:
   function handleChange(event) {
     const { name, value, type, checked } = event.target;
     setFormData((prevFormData) => {
@@ -29,9 +33,10 @@ export default function Form() {
       };
     });
   }
-  // added a name property to our inputs so whne clicked, it acessess the right state and prevents users froom clicking multiple inputs, also added a value id which is wht will be logged to state whenn clicked. also added a handle chang efunction tha willl work the same as the handle changes above and we cheecked it with a console log statement above
+  // added a name property to our inputs so when clicked, it acessess the right state and prevents users froom clicking multiple inputs, also added a value id which is wht will be logged to state whenn clicked. also added a handle chang efunction tha willl work the same as the handle changes above and we cheecked it with a console log statement above
   return (
     <form>
+       {/* Input fields */}
       <input
         type="text"
         placeholder="First Name"
@@ -59,6 +64,7 @@ export default function Form() {
         onChange={handleChange}
         name="comments"
       />
+       {/* Checkbox for friendliness */}
       <input
         type="checkbox"
         id="isFriendly"
@@ -70,9 +76,11 @@ export default function Form() {
       <br />
       <br />
 
-      <fieldset>
-        <legend>Current employment status</legend>
 
+      <fieldset>
+        {/* Radio buttons for employment status */}
+        <legend>Current employment status</legend>
+{/* ... Repeat for other radio buttons ... */}
         <input
           type="radio"
           id="unemployed"
@@ -92,7 +100,7 @@ export default function Form() {
         />
         <label htmlFor="part-time">Part-time</label>
         <br />
-{/* we have to add a booleen value to make state understannd which radio input was clicked. added it with the checked === statement  */}
+{/* we have to add a booleen value to make state understand which radio input was clicked. added it with the checked === statement  */}
         <input type="radio" id="full-time" name="employment"
         value="full-time"
         onChange={handleChange}
@@ -102,6 +110,13 @@ export default function Form() {
         <label htmlFor="full-time">Full-time</label>
         <br />
       </fieldset>
+
+
+      {/* This JSX code defines a form with input fields, a checkbox, and radio buttons.
+Each input element is associated with the handleChange function to update the formData state when the value changes.
+The value attribute of each input is set to the corresponding value in the formData state, ensuring that the form fields display the correct values.
+Radio buttons for employment status also have a checked attribute set based on whether the formData.employment matches the radio button's value.
+Overall, this code represents a form in a React component, and it maintains the form's state using React hooks. The handleChange function updates the form data in response to user input. */}
     </form>
   );
 }
